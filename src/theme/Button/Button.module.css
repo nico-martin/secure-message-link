@@ -1,0 +1,179 @@
+.button {
+  --button-padding-h: 1.4em;
+  --button-padding-v: 0.8em;
+  --button-main-color: var(--c-primary);
+  --button-text-color: var(--c-p);
+  cursor: pointer;
+  font-weight: 400;
+  line-height: 1;
+  padding: var(--button-padding-v) var(--button-padding-h);
+  position: relative;
+  color: var(--c-p);
+  display: flex;
+  align-items: center;
+  transition: all 200ms ease-in-out;
+  border-radius: 0.2em;
+  border: 1px solid var(--button-main-color);
+
+  &:disabled {
+    pointer-events: none;
+  }
+
+  &.buttonHasIcon {
+    --button-padding-h: 1em;
+  }
+}
+
+.bkg {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+  background-color: transparent;
+  opacity: 0.8;
+  will-change: opacity;
+  transition: opacity 200ms;
+  border-radius: 0.2em;
+}
+
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  height: 1em;
+  width: 100%;
+  padding: 0 var(--button-padding-h);
+  color: var(--button-main-color);
+  opacity: 0;
+  will-change: opacity;
+  transition: opacity 200ms ease-in-out;
+  pointer-events: none;
+  display: flex;
+  gap: 0.5em;
+
+  &:not(:has(.progress)) {
+    justify-content: center;
+  }
+}
+
+.loaderIcon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.buttonIconRight .loader {
+  flex-direction: row-reverse;
+}
+
+.progress {
+  width: 100%;
+}
+
+.icon {
+  color: #fff;
+  will-change: opacity;
+  transition: opacity 200ms ease-in-out;
+  display: block;
+  pointer-events: none;
+
+  &.iconLeft {
+    margin-right: 0.6em;
+  }
+
+  &.iconRight {
+    margin-left: 0.6em;
+  }
+}
+
+.content {
+  position: relative;
+  color: var(--button-text-color);
+  opacity: 1;
+  will-change: opacity;
+  transition: opacity 200ms ease-in-out;
+  white-space: nowrap;
+}
+
+/* States */
+
+.button:hover {
+  .bkg {
+    opacity: 1;
+  }
+}
+
+.button:focus {
+  outline: none;
+}
+
+/* Variants */
+
+.buttonIsDisabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.buttonIsLoading {
+  .loader {
+    opacity: 1;
+  }
+
+  .content,
+  .icon {
+    opacity: 0;
+  }
+}
+
+.buttonHasNoText {
+  padding: 0.5em;
+
+  .iconLeft {
+    margin-right: 0;
+  }
+
+  .iconRight {
+    margin-left: 0;
+  }
+}
+
+.buttonNoPadding {
+  padding: 0;
+}
+
+.buttonSizeSmall {
+  font-size: 0.65rem;
+}
+
+.buttonSizeBig {
+  font-size: 1.5rem;
+}
+
+.pulsate {
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    outline: 5px solid var(--c-primary);
+    animation: pulsate 1s infinite;
+    z-index: -1;
+    border-radius: 0.2em;
+  }
+}
+
+@keyframes pulsate {
+  0% {
+    transform: scale(0.9, 0.9);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1.075, 1.175);
+    opacity: 0;
+  }
+}

@@ -6,6 +6,7 @@ import cn from '@utils/classnames.ts';
 import DisplayMessage from '@app/DisplayMessage.tsx';
 import CreateMessage from '@app/CreateMessage.tsx';
 import Header from '@app/Header.tsx';
+import Footer from '@app/Footer.tsx';
 
 const App: React.FC = () => {
   const { currentPage } = useHashPath();
@@ -22,7 +23,7 @@ const App: React.FC = () => {
           <CreateMessage />
         )}
       </main>
-      <footer className={styles.footer}>footer</footer>
+      <Footer className={styles.footer} />
     </div>
   );
 };

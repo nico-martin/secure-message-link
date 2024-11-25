@@ -1,0 +1,17 @@
+.root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.25em;
+  width: 100%;
+
+  p {
+    font-size: var(--fs-xsmall);
+    color: var(--c-p-light);
+
+    a {
+      color: var(--c-grad);
+    }
+  }
+}

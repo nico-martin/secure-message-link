@@ -11,18 +11,13 @@ interface Message {
   salt: string;
   expires: string;
 }
-const { data: fetchData, error: fetchError } = await supabase
-  .from('messages')
-  .select();
 
-console.log(fetchData, fetchError);
-
-export async function createMessage(
+export const createMessage = async (
   ciphertext: string,
   iv: string,
   salt: string,
   expires: string
-): Promise<string | null> {
+): Promise<string | null> => {
   try {
     const { data, error } = await supabase.rpc('insert_message', {
       ciphertext,
@@ -40,7 +35,7 @@ export async function createMessage(
     console.error('Error creating message:', error);
     return null;
   }
-}
+};
 
 export const getMessageById = async (id: string): Promise<Message | null> => {
   try {

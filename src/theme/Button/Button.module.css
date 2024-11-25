@@ -100,14 +100,14 @@
 
 /* States */
 
-.button:hover {
+.button:hover,
+.button:focus {
   .bkg {
     opacity: 1;
   }
 }
 
 .button:focus {
-  outline: none;
 }
 
 /* Variants */

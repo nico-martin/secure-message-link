@@ -5,7 +5,6 @@ const encrypt = async (
   const encoder = new TextEncoder();
   const salt = crypto.getRandomValues(new Uint8Array(16));
 
-  // Generate key material from the password
   const keyMaterial = await crypto.subtle.importKey(
     'raw',
     encoder.encode(password),

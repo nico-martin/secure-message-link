@@ -13,7 +13,8 @@ dotenv.config();
 
 const app = {
   title: 'Secure Message Link',
-  description: '',
+  description:
+    'An app that allows you encrypt a message and share it with a link.',
   images: {
     facebook: false,
     twitter: false,

@@ -1,10 +1,10 @@
 :root {
-  --c-white: #faf6f5;
-  --c-p: #fff;
-  --c-p-light: #858585;
+  /* --c-white: #faf6f5;
+  --c-p: #000;
+  --c-p-light: #515151;
   --c-p-hover: #f1f1f1;
-  --c-bkg: #131314;
-  --c-bkg-light: #181819;
+  --c-bkg: #f1f1f1;
+  --c-bkg-light: #d3d3d3;
   --c-border: rgb(48, 48, 48);
   --c-border-light: rgb(104, 103, 103);
   --c-grad-from: #ff4b2b;
@@ -12,5 +12,23 @@
   --c-primary: #ff416c;
   --c-feedback: #5480cb;
   --c-feedback-error: #c13838;
-  --c-feedback-success: #206920;
+  --c-feedback-success: #206920;*/
+
+  --transition-speed: 200ms;
+  --c-p: #1d1d1b;
+  --c-p-inverse: #fff;
+  --c-p-light: #bdbdaf;
+  --c-border: #d0d0d0;
+  --c-border-light: #e7e6e6;
+  --c-bkg: #f8f8f8;
+  --c-bkg-inverse: #252525;
+  --c-card-b: #e6e6e6;
+  --c-card-bkg: #fff;
+  --c-social: #fff;
+  --c-grad: #ff416c;
+  --c-grad-from: #ff4b2b;
+  --c-grad-to: #ff416c;
+  --c-feedback: #5480cb;
+  --c-feedback-error: #c13838;
+  --c-feedback-success: #3abf3a;
 }

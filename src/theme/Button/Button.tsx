@@ -18,7 +18,7 @@ interface ButtonProps {
   progress?: number;
   noPadding?: boolean;
   size?: 'small' | 'medium' | 'big';
-  pulsate?: boolean;
+  appearance?: 'button' | 'minimal';
   [key: string]: any;
 }
 
@@ -42,7 +42,7 @@ const Button: React.ForwardRefExoticComponent<ButtonProps> = React.forwardRef<
       disabled = false,
       noPadding = false,
       size = 'medium',
-      pulsate = false,
+      appearance = 'button',
       ...props
     },
     ref
@@ -60,7 +60,7 @@ const Button: React.ForwardRefExoticComponent<ButtonProps> = React.forwardRef<
           [styles.buttonNoPadding]: noPadding,
           [styles.buttonSizeSmall]: size === 'small',
           [styles.buttonSizeBig]: size === 'big',
-          [styles.pulsate]: pulsate,
+          [styles.appearanceMinimal]: appearance === 'minimal',
         })}
         onClick={() => onClick()}
         onMouseDown={() => onMouseDown()}

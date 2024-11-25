@@ -9,7 +9,7 @@
   justify-content: space-between;
   align-items: center;
   border-radius: 0.2em;
-  background-color: var(--c-bkg-light);
+  background-color: var(--c-bkg);
 }
 
 .copy {
@@ -17,10 +17,41 @@
   padding: 0.75rem;
   cursor: pointer;
   transition: 100ms ease-in-out;
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--c-border);
+    opacity: 0.8;
+    transition: 100ms ease-in-out opacity;
+  }
+
+  svg {
+    position: relative;
+    z-index: 10;
+  }
+
+  &:hover {
+    &:after {
+      opacity: 1;
+    }
+  }
 
   &.copied {
     border-color: var(--c-feedback-success);
     color: var(--c-feedback-success);
+    pointer-events: none;
+
+    &:after {
+      background-color: var(--c-feedback-success);
+      opacity: 0.4 !important;
+    }
+
+    svg {
+      scale: 1.2;
+    }
   }
 
   svg,
@@ -34,4 +65,5 @@
   flex-shrink: 1;
   text-overflow: ellipsis;
   overflow: hidden;
+  font-weight: light;
 }

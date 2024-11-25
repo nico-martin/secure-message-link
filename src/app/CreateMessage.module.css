@@ -4,10 +4,8 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 1em;
-  border-top: 1px solid var(--c-border);
+  gap: var(--spacing);
   width: 100%;
-  padding-top: 1rem;
 }
 
 .form {
@@ -18,8 +16,8 @@
   background-color: var(--c-bkg);
   border: 1px solid var(--c-border);
   width: 100%;
-  border-radius: 0.2em;
-  height: 5em;
+  border-radius: var(--border-radius);
+  height: 12em;
   padding: 1em;
   color: var(--c-p);
 }
@@ -30,6 +28,5 @@
 }
 
 .linkContainer {
-  margin-top: 2rem;
   width: 100%;
 }

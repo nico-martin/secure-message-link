@@ -1,7 +1,7 @@
 .root {
   fill: transparent;
   stroke: currentColor;
-  stroke-width: 0.12em;
+  stroke-width: 0.25em;
   animation:
     loader-dash 2s ease infinite,
     loader-rotate 2s linear infinite;

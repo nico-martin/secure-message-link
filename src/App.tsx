@@ -13,7 +13,7 @@ const App: React.FC = () => {
   return (
     <div className={cn(styles.root)}>
       <Header className={styles.header} />
-      <main>
+      <main className={styles.main}>
         {!('crypto' in window) ? (
           <p>Your Browser does not support the WebCrypto API.</p>
         ) : currentPage ? (
@@ -22,6 +22,7 @@ const App: React.FC = () => {
           <CreateMessage />
         )}
       </main>
+      <footer className={styles.footer}>footer</footer>
     </div>
   );
 };

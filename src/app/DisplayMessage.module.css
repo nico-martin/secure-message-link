@@ -1,12 +1,19 @@
 .root {
 }
 
-.error {
-  color: var(--c-feedback-error);
-  border: 1px solid var(--c-feedback-error);
-  border-radius: 0.2em;
-  background-color: var(--c-bkg-light);
-  padding: 1rem;
+.message {
+  background-color: var(--c-bkg);
+  border: 1px solid var(--c-border);
+  width: 100%;
+  border-radius: var(--border-radius);
+  height: 12em;
+  padding: 1em;
+  color: var(--c-p);
+  margin-top: var(--spacing-small);
+}
+
+.messageTitle {
+  font-size: var(--fs-big);
 }
 
 .buttonWrapper {
@@ -15,20 +22,13 @@
   justify-content: center;
 }
 
-.button {
-  cursor: pointer;
-  opacity: 0.5;
-  transition: all 200ms ease-in-out;
+.decrypt {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-
-  &:hover {
-    opacity: 1;
-  }
+  flex-direction: column;
+  gap: var(--spacing);
 }
 
-.buttonIcon {
-  rotate: 180deg;
+.decryptButton {
+  width: 100%;
+  justify-content: center;
 }

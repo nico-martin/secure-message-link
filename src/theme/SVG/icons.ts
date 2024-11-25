@@ -1,5 +1,7 @@
 /* This file was generated automatically with the ./generate.js script */
 
+import alertOutline from './icons/alert-outline.svg?react';
+import arrowLeft from './icons/arrow-left.svg?react';
 import arrowRight from './icons/arrow-right.svg?react';
 import check from './icons/check.svg?react';
 import close from './icons/close.svg?react';
@@ -11,7 +13,10 @@ import download from './icons/download.svg?react';
 import eraserVariant from './icons/eraser-variant.svg?react';
 import formatFont from './icons/formatFont.svg?react';
 import forum from './icons/forum.svg?react';
+import informationOutline from './icons/information-outline.svg?react';
 import install from './icons/install.svg?react';
+import key from './icons/key.svg?react';
+import linkVariantPlus from './icons/link-variant-plus.svg?react';
 import microphoneOutline from './icons/microphone-outline.svg?react';
 import microphone from './icons/microphone.svg?react';
 import newIcon from './icons/new-icon.svg?react';
@@ -29,6 +34,8 @@ import viewMd from './icons/view-md.svg?react';
 import viewSplit from './icons/view-split.svg?react';
 
 export enum IconName {
+  ALERT_OUTLINE = 'alert-outline',
+  ARROW_LEFT = 'arrow-left',
   ARROW_RIGHT = 'arrow-right',
   CHECK = 'check',
   CLOSE = 'close',
@@ -40,7 +47,10 @@ export enum IconName {
   ERASER_VARIANT = 'eraser-variant',
   FORMATFONT = 'formatFont',
   FORUM = 'forum',
+  INFORMATION_OUTLINE = 'information-outline',
   INSTALL = 'install',
+  KEY = 'key',
+  LINK_VARIANT_PLUS = 'link-variant-plus',
   MICROPHONE_OUTLINE = 'microphone-outline',
   MICROPHONE = 'microphone',
   NEW_ICON = 'new-icon',
@@ -59,6 +69,8 @@ export enum IconName {
 }
 
 const icons: Record<string, any> = {
+  'alert-outline': alertOutline,
+  'arrow-left': arrowLeft,
   'arrow-right': arrowRight,
   'check': check,
   'close': close,
@@ -70,7 +82,10 @@ const icons: Record<string, any> = {
   'eraser-variant': eraserVariant,
   'formatFont': formatFont,
   'forum': forum,
+  'information-outline': informationOutline,
   'install': install,
+  'key': key,
+  'link-variant-plus': linkVariantPlus,
   'microphone-outline': microphoneOutline,
   'microphone': microphone,
   'new-icon': newIcon,

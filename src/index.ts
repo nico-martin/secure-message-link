@@ -4,4 +4,5 @@ import './styles/colors.css';
 import './styles/grid.css';
 import './styles/fonts/font-woff2.css';
 import './styles/typography.css';
+import './styles/misc.css';
 import './App';

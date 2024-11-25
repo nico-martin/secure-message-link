@@ -1,73 +1,59 @@
 import { createClient } from '@supabase/supabase-js';
-import { arrayBufferToBase64 } from '@utils/arrayBuffer.ts';
-import { uint8ArrayToString } from '@utils/uint8Array.ts';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON as string;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-// Define the types for the table fields
 interface Message {
   id: string;
   ciphertext: string;
   iv: string;
   salt: string;
-  expires: string; // ISO string format
+  expires: string;
 }
+const { data: fetchData, error: fetchError } = await supabase
+  .from('messages')
+  .select();
+
+console.log(fetchData, fetchError);
 
 export async function createMessage(
-  ciphertext: ArrayBuffer,
-  iv: Uint8Array,
-  salt: Uint8Array,
-  expires: Date
+  ciphertext: string,
+  iv: string,
+  salt: string,
+  expires: string
 ): Promise<string | null> {
   try {
-    // Insert a new message into the table
-    const { data: insertData, error: insertError } = await supabase
-      .from('messages')
-      .insert([
-        {
-          ciphertext: arrayBufferToBase64(ciphertext),
-          iv: uint8ArrayToString(iv),
-          salt: uint8ArrayToString(salt),
-          expires: expires.toISOString(),
-        },
-      ])
-      .select()
-      .single();
+    const { data, error } = await supabase.rpc('insert_message', {
+      ciphertext,
+      iv,
+      salt,
+      expires,
+    });
 
-    if (insertError) {
-      throw insertError;
+    if (error) {
+      throw error;
     }
 
-    // Fetch the message by id
-    const { data: fetchData, error: fetchError } = await supabase
-      .from('messages')
-      .select()
-      .eq('id', insertData.id)
-      .single();
-
-    if (fetchError) {
-      throw fetchError;
-    }
-
-    return (fetchData as Message).id;
+    return data;
   } catch (error) {
-    console.error('Error creating or fetching message:', error);
+    console.error('Error creating message:', error);
     return null;
   }
 }
 
 export const getMessageById = async (id: string): Promise<Message | null> => {
   try {
-    const { data, error } = await supabase
-      .from('messages')
-      .select()
-      .eq('id', id)
-      .single();
+    const { data, error } = await supabase.rpc('get_message_by_id', {
+      message_id: id,
+    });
 
     if (error) {
       throw error;
+    }
+
+    if (!data) {
+      throw new Error('No data found');
     }
 
     return data as Message;

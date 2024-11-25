@@ -6,21 +6,29 @@ import encrypt from '@utils/encrypt.ts';
 import { encodeHash } from '@utils/useHashPath.ts';
 import { createMessage } from '@utils/DB.ts';
 import { v4 as uuidv4 } from 'uuid';
+import { arrayBufferToBase64 } from '@utils/arrayBuffer.ts';
+import { uint8ArrayToString } from '@utils/uint8Array.ts';
+import Link from '@app/Link.tsx';
 
 const CreateMessage: React.FC<{ className?: string }> = ({
   className = '',
 }) => {
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);
-  const [link, setLink] = React.useState<string | null>(null);
+  const [link, setLink] = React.useState<string | null>('');
 
   React.useEffect(() => {
     textareaRef?.current?.focus();
   }, [textareaRef]);
 
   return (
-    <div>
+    <div className={styles.root}>
+      <p>
+        With “Secure Message Link” you can encrypt content that is accessible
+        via a link. The link expires after 24 hours or after the content has
+        been decrypted for the first time.
+      </p>
       <form
-        className={cn(styles.root, className)}
+        className={cn(styles.form, className)}
         onSubmit={async (e) => {
           e.preventDefault();
           const textarea = document.querySelector<HTMLTextAreaElement>(
@@ -32,14 +40,16 @@ const CreateMessage: React.FC<{ className?: string }> = ({
           const nowPlus24Hours = new Date(Date.now() + 24 * 60 * 60 * 1000);
 
           const id = await createMessage(
-            encrypted.ciphertext,
-            encrypted.iv,
-            encrypted.salt,
-            nowPlus24Hours
+            arrayBufferToBase64(encrypted.ciphertext),
+            uint8ArrayToString(encrypted.iv),
+            uint8ArrayToString(encrypted.salt),
+            nowPlus24Hours.toISOString()
           );
           const link = encodeHash({ id, password });
 
-          setLink(link);
+          setLink(
+            `${window.location.protocol}//${window.location.host}#` + link
+          );
           textarea.focus();
           textarea.value = '';
         }}
@@ -49,12 +59,7 @@ const CreateMessage: React.FC<{ className?: string }> = ({
           Generate secure link
         </Button>
       </form>
-      {link && (
-        <p>
-          Your message is encrypted and can be accessed via the following link:{' '}
-          <a href={`#${link}`}>{link}</a>
-        </p>
-      )}
+      {link && <Link className={styles.linkContainer} link={link} />}
     </div>
   );
 };

@@ -4,6 +4,7 @@ import arrowRight from './icons/arrow-right.svg?react';
 import check from './icons/check.svg?react';
 import close from './icons/close.svg?react';
 import commentTextOutline from './icons/comment-text-outline.svg?react';
+import contentCopy from './icons/content-copy.svg?react';
 import creation from './icons/creation.svg?react';
 import downloadOutline from './icons/download-outline.svg?react';
 import download from './icons/download.svg?react';
@@ -32,6 +33,7 @@ export enum IconName {
   CHECK = 'check',
   CLOSE = 'close',
   COMMENT_TEXT_OUTLINE = 'comment-text-outline',
+  CONTENT_COPY = 'content-copy',
   CREATION = 'creation',
   DOWNLOAD_OUTLINE = 'download-outline',
   DOWNLOAD = 'download',
@@ -61,6 +63,7 @@ const icons: Record<string, any> = {
   'check': check,
   'close': close,
   'comment-text-outline': commentTextOutline,
+  'content-copy': contentCopy,
   'creation': creation,
   'download-outline': downloadOutline,
   'download': download,

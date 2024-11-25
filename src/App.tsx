@@ -5,15 +5,14 @@ import styles from './App.module.css';
 import cn from '@utils/classnames.ts';
 import DisplayMessage from '@app/DisplayMessage.tsx';
 import CreateMessage from '@app/CreateMessage.tsx';
+import Header from '@app/Header.tsx';
 
 const App: React.FC = () => {
   const { currentPage } = useHashPath();
 
   return (
     <div className={cn(styles.root)}>
-      <header>
-        <h1>Secure Message Link</h1>
-      </header>
+      <Header className={styles.header} />
       <main>
         {!('crypto' in window) ? (
           <p>Your Browser does not support the WebCrypto API.</p>

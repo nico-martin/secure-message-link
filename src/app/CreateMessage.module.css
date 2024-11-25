@@ -1,12 +1,17 @@
-.root {
+.root,
+.form {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 1em;
-  padding: 1em;
   border-top: 1px solid var(--c-border);
   width: 100%;
+  padding-top: 1rem;
+}
+
+.form {
+  border-top: none;
 }
 
 .textarea {
@@ -22,4 +27,9 @@
 .button {
   width: 100%;
   justify-content: center;
+}
+
+.linkContainer {
+  margin-top: 2rem;
+  width: 100%;
 }

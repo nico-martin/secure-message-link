@@ -1,0 +1,37 @@
+.root {
+}
+
+.linkWrapper {
+  margin-top: 1rem;
+  width: 100%;
+  border: 1px solid var(--c-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0.2em;
+  background-color: var(--c-bkg-light);
+}
+
+.copy {
+  border: 1px solid var(--c-border);
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: 100ms ease-in-out;
+
+  &.copied {
+    border-color: var(--c-feedback-success);
+    color: var(--c-feedback-success);
+  }
+
+  svg,
+  figure {
+    display: block;
+  }
+}
+
+.link {
+  padding: 0 0.75rem;
+  flex-shrink: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

@@ -32,7 +32,7 @@ const CreateMessage: React.FC<{ className?: string }> = ({
             appearance="minimal"
             icon={IconName.ARROW_LEFT}
           >
-            generate new Link
+            generate new link
           </Button>
         </React.Fragment>
       ) : (

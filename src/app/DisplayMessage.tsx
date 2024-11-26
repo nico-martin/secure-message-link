@@ -85,7 +85,7 @@ const DisplayMessage: React.FC<{ id: string; password: string }> = ({
           className={styles.button}
           icon={IconName.ARROW_LEFT}
         >
-          generate new Message
+          generate new Link
         </Button>
       </div>
     </div>

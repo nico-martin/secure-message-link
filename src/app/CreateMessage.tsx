@@ -70,6 +70,7 @@ const CreateMessage: React.FC<{ className?: string }> = ({
                   nowPlus24Hours.toISOString()
                 );
                 const link = encodeHash({ id, password });
+                setLoading(false);
 
                 setLink(
                   `${window.location.protocol}//${window.location.host}#` + link

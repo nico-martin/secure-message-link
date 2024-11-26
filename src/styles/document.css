@@ -1,16 +1,11 @@
 img {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 body {
-    background-color: var(--c-bkg);
+  background-color: var(--c-bkg);
 }
 
 #root {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    top: 0;
 }

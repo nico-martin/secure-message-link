@@ -1,11 +1,11 @@
 import React from 'react';
 import { getMessageById } from '@utils/DB.ts';
-import decrypt from '@utils/decrypt.ts';
 import { base64ToArrayBuffer } from '@utils/arrayBuffer.ts';
 import { stringToUint8Array } from '@utils/uint8Array.ts';
 import nl2br from '@utils/nl2br.ts';
 import styles from './DisplayMessage.module.css';
 import { Button, IconName, Message, MessageType } from '@theme';
+import Crypto from '@utils/Crypto.ts';
 const DisplayMessage: React.FC<{ id: string; password: string }> = ({
   id,
   password,
@@ -31,7 +31,7 @@ const DisplayMessage: React.FC<{ id: string; password: string }> = ({
       const decodedIv = stringToUint8Array(message.iv);
       const decodedSalt = stringToUint8Array(message.salt);
 
-      const decrypted = await decrypt(
+      const decrypted = await Crypto.decrypt(
         decodedCiphertext,
         password,
         decodedIv,
@@ -40,6 +40,7 @@ const DisplayMessage: React.FC<{ id: string; password: string }> = ({
 
       setMessage(decrypted);
     } catch (error) {
+      console.error(error);
       setError('Something went wrong. The message could not be decrypted.');
     }
     setLoading(false);

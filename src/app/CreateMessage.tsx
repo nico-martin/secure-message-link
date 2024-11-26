@@ -2,13 +2,13 @@ import React from 'react';
 import cn from '@utils/classnames.ts';
 import styles from './CreateMessage.module.css';
 import { Button, IconName, Message, MessageType } from '@theme';
-import encrypt from '@utils/encrypt.ts';
 import { encodeHash } from '@utils/useHashPath.ts';
 import { createMessage } from '@utils/DB.ts';
 import { v4 as uuidv4 } from 'uuid';
 import { arrayBufferToBase64 } from '@utils/arrayBuffer.ts';
 import { uint8ArrayToString } from '@utils/uint8Array.ts';
 import Link from '@app/Link.tsx';
+import Crypto from '@utils/Crypto.ts';
 
 const CreateMessage: React.FC<{ className?: string }> = ({
   className = '',
@@ -58,7 +58,7 @@ const CreateMessage: React.FC<{ className?: string }> = ({
                   return;
                 }
                 const password = uuidv4();
-                const encrypted = await encrypt(text, password);
+                const encrypted = await Crypto.encrypt(text, password);
                 const nowPlus24Hours = new Date(
                   Date.now() + 24 * 60 * 60 * 1000
                 );

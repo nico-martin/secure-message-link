@@ -15,7 +15,7 @@ const CreateMessage: React.FC<{ className?: string }> = ({
 }) => {
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);
   const [link, setLink] = React.useState<string>('');
-  const [error, setError] = React.useState<string>('test');
+  const [error, setError] = React.useState<string>('');
   const [loading, setLoading] = React.useState<boolean>(false);
 
   React.useEffect(() => {
@@ -85,9 +85,11 @@ const CreateMessage: React.FC<{ className?: string }> = ({
             }}
           >
             <textarea className={styles.textarea} name="text"></textarea>
-            <Message className={styles.error} type={MessageType.ERROR}>
-              {error}
-            </Message>
+            {error !== '' && (
+              <Message className={styles.error} type={MessageType.ERROR}>
+                {error}
+              </Message>
+            )}
             <Button
               icon={IconName.LINK_VARIANT_PLUS}
               type="submit"

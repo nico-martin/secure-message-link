@@ -13,9 +13,15 @@ const Message: React.FC<{
   children: string | React.ReactElement;
   type?: MessageType;
   noIcon?: boolean;
-}> = ({ children, type = MessageType.INFO, noIcon = false }) => (
+  className?: string;
+}> = ({
+  children,
+  type = MessageType.INFO,
+  noIcon = false,
+  className = '',
+}) => (
   <div
-    className={cn(styles.root, {
+    className={cn(styles.root, className, {
       [styles.typeError]: type === MessageType.ERROR,
       [styles.typeSuccess]: type === MessageType.SUCCESS,
     })}

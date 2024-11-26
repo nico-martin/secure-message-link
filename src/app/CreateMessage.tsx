@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from '@utils/classnames.ts';
 import styles from './CreateMessage.module.css';
-import { Button, IconName } from '@theme';
+import { Button, IconName, Message, MessageType } from '@theme';
 import encrypt from '@utils/encrypt.ts';
 import { encodeHash } from '@utils/useHashPath.ts';
 import { createMessage } from '@utils/DB.ts';
@@ -14,7 +14,8 @@ const CreateMessage: React.FC<{ className?: string }> = ({
   className = '',
 }) => {
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);
-  const [link, setLink] = React.useState<string | null>('');
+  const [link, setLink] = React.useState<string>('');
+  const [error, setError] = React.useState<string>('test');
   const [loading, setLoading] = React.useState<boolean>(false);
 
   React.useEffect(() => {
@@ -45,36 +46,48 @@ const CreateMessage: React.FC<{ className?: string }> = ({
             className={cn(styles.form, className)}
             onSubmit={async (e) => {
               e.preventDefault();
+              setError('');
               setLoading(true);
-              const textarea = document.querySelector<HTMLTextAreaElement>(
-                'textarea[name=text]'
-              );
-              const text = textarea.value;
-              if (!text) {
+              try {
+                const textarea = document.querySelector<HTMLTextAreaElement>(
+                  'textarea[name=text]'
+                );
+                const text = textarea.value;
+                if (!text) {
+                  setLoading(false);
+                  return;
+                }
+                const password = uuidv4();
+                const encrypted = await encrypt(text, password);
+                const nowPlus24Hours = new Date(
+                  Date.now() + 24 * 60 * 60 * 1000
+                );
+
+                const id = await createMessage(
+                  arrayBufferToBase64(encrypted.ciphertext),
+                  uint8ArrayToString(encrypted.iv),
+                  uint8ArrayToString(encrypted.salt),
+                  nowPlus24Hours.toISOString()
+                );
+                const link = encodeHash({ id, password });
+
+                setLink(
+                  `${window.location.protocol}//${window.location.host}#` + link
+                );
+                textarea.focus();
+                textarea.value = '';
+              } catch (error) {
                 setLoading(false);
-                return;
+                setError(
+                  'There was an error creating the message. Please try again.'
+                );
               }
-              const password = uuidv4();
-              const encrypted = await encrypt(text, password);
-              const nowPlus24Hours = new Date(Date.now() + 24 * 60 * 60 * 1000);
-
-              const id = await createMessage(
-                arrayBufferToBase64(encrypted.ciphertext),
-                uint8ArrayToString(encrypted.iv),
-                uint8ArrayToString(encrypted.salt),
-                nowPlus24Hours.toISOString()
-              );
-              const link = encodeHash({ id, password });
-
-              setLoading(false);
-              setLink(
-                `${window.location.protocol}//${window.location.host}#` + link
-              );
-              textarea.focus();
-              textarea.value = '';
             }}
           >
             <textarea className={styles.textarea} name="text"></textarea>
+            <Message className={styles.error} type={MessageType.ERROR}>
+              {error}
+            </Message>
             <Button
               icon={IconName.LINK_VARIANT_PLUS}
               type="submit"

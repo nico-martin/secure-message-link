@@ -37,3 +37,65 @@ Only the person with the link (and the password it contains) can do this.
 
 For the backend I used [Supabase](https://supabase.com/), a service that provides a Postgres database and an API to interact with it.  
 However, this would work with pretty much any database technology, as the complex processes run directly in the browser.
+
+### Messages Database
+
+```sql
+CREATE TABLE messages (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    ciphertext TEXT NOT NULL,
+    iv TEXT NOT NULL,
+    salt TEXT NOT NULL,
+    expires TIMESTAMP NOT NULL
+);
+```
+
+### Insert Message
+Since I am RLS (Row Level Security) on the table and the user is anonymous, I need to use a function to insert the message..
+
+```sql
+CREATE OR REPLACE FUNCTION public.insert_message(
+    ciphertext TEXT,
+    iv TEXT,
+    salt TEXT,
+    expires TIMESTAMP
+) RETURNS UUID
+SECURITY DEFINER
+AS $$
+DECLARE
+    new_id UUID;
+BEGIN
+    INSERT INTO public.messages (ciphertext, iv, salt, expires)
+    VALUES (ciphertext, iv, salt, expires)
+    RETURNING id INTO new_id;
+
+    RETURN new_id;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+### Get Message by ID
+
+..and another function to then get the message by ID and delete it.
+
+```sql
+CREATE OR REPLACE FUNCTION public.get_message_by_id(
+message_id UUID
+) RETURNS public.messages
+SECURITY DEFINER
+AS $$
+DECLARE
+result public.messages;
+BEGIN
+SELECT * INTO result
+FROM public.messages
+WHERE id = message_id
+AND expires > NOW();
+
+    -- Delete the message after retrieving it
+    DELETE FROM public.messages
+    WHERE id = message_id;
+
+    RETURN result;
+END;
+$$ LANGUAGE plpgsql;

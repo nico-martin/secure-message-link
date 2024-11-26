@@ -32,7 +32,7 @@ const CreateMessage: React.FC<{ className?: string }> = ({
             appearance="minimal"
             icon={IconName.ARROW_LEFT}
           >
-            Generate new Link
+            generate new Link
           </Button>
         </React.Fragment>
       ) : (
@@ -97,7 +97,7 @@ const CreateMessage: React.FC<{ className?: string }> = ({
               className={styles.button}
               loading={loading}
             >
-              Generate secure link
+              generate secure link
             </Button>
           </form>
         </React.Fragment>

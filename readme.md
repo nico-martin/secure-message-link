@@ -51,7 +51,7 @@ CREATE TABLE messages (
 ```
 
 ### Insert Message
-Since I am RLS (Row Level Security) on the table and the user is anonymous, I need to use a function to insert the message..
+Since I am using RLS (Row Level Security) on the table and the user is anonymous, I need to use a function to insert the message..
 
 ```sql
 CREATE OR REPLACE FUNCTION public.insert_message(
@@ -88,7 +88,6 @@ DECLARE
   result public.messages;
 BEGIN
   SELECT * INTO result FROM public.messages WHERE id = message_id AND expires > NOW();
-  -- Delete the message after retrieving it
   DELETE FROM public.messages WHERE id = message_id;
 
   RETURN result;

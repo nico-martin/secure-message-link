@@ -42,11 +42,11 @@ However, this would work with pretty much any database technology, as the comple
 
 ```sql
 CREATE TABLE messages (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    ciphertext TEXT NOT NULL,
-    iv TEXT NOT NULL,
-    salt TEXT NOT NULL,
-    expires TIMESTAMP NOT NULL
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  ciphertext TEXT NOT NULL,
+  iv TEXT NOT NULL,
+  salt TEXT NOT NULL,
+  expires TIMESTAMP NOT NULL
 );
 ```
 
@@ -55,21 +55,21 @@ Since I am RLS (Row Level Security) on the table and the user is anonymous, I ne
 
 ```sql
 CREATE OR REPLACE FUNCTION public.insert_message(
-    ciphertext TEXT,
-    iv TEXT,
-    salt TEXT,
-    expires TIMESTAMP
+  ciphertext TEXT,
+  iv TEXT,
+  salt TEXT,
+  expires TIMESTAMP
 ) RETURNS UUID
 SECURITY DEFINER
 AS $$
 DECLARE
-    new_id UUID;
+  new_id UUID;
 BEGIN
-    INSERT INTO public.messages (ciphertext, iv, salt, expires)
-    VALUES (ciphertext, iv, salt, expires)
-    RETURNING id INTO new_id;
+  INSERT INTO public.messages (ciphertext, iv, salt, expires)
+  VALUES (ciphertext, iv, salt, expires)
+  RETURNING id INTO new_id;
 
-    RETURN new_id;
+  RETURN new_id;
 END;
 $$ LANGUAGE plpgsql;
 ```
@@ -80,22 +80,18 @@ $$ LANGUAGE plpgsql;
 
 ```sql
 CREATE OR REPLACE FUNCTION public.get_message_by_id(
-message_id UUID
+  message_id UUID
 ) RETURNS public.messages
 SECURITY DEFINER
 AS $$
 DECLARE
-result public.messages;
+  result public.messages;
 BEGIN
-SELECT * INTO result
-FROM public.messages
-WHERE id = message_id
-AND expires > NOW();
+  SELECT * INTO result FROM public.messages WHERE id = message_id AND expires > NOW();
+  -- Delete the message after retrieving it
+  DELETE FROM public.messages WHERE id = message_id;
 
-    -- Delete the message after retrieving it
-    DELETE FROM public.messages
-    WHERE id = message_id;
-
-    RETURN result;
+  RETURN result;
 END;
 $$ LANGUAGE plpgsql;
+```

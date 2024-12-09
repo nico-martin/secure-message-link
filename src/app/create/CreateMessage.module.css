@@ -1,0 +1,17 @@
+.root,
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: var(--spacing);
+  width: 100%;
+}
+
+.form {
+  border-top: none;
+}
+
+.linkContainer {
+  width: 100%;
+}

@@ -2,15 +2,16 @@ import React from 'react';
 import { getMessageById } from '@utils/DB.ts';
 import { base64ToArrayBuffer } from '@utils/arrayBuffer.ts';
 import { stringToUint8Array } from '@utils/uint8Array.ts';
-import nl2br from '@utils/nl2br.ts';
 import styles from './DisplayMessage.module.css';
 import { Button, IconName, Message, MessageType } from '@theme';
 import Crypto from '@utils/Crypto.ts';
+import DisplayMessagePayload from '@app/display/DisplayMessagePayload.tsx';
 const DisplayMessage: React.FC<{ id: string; password: string }> = ({
   id,
   password,
 }) => {
-  const [message, setMessage] = React.useState<string | null>(null);
+  const [messagePayload, setMessagePayload] = React.useState<string>('');
+  const [messageType, setMessageType] = React.useState<string>('');
   const [error, setError] = React.useState<string | null>('');
   const [loading, setLoading] = React.useState<boolean>(false);
 
@@ -38,7 +39,11 @@ const DisplayMessage: React.FC<{ id: string; password: string }> = ({
         decodedSalt
       );
 
-      setMessage(decrypted);
+      console.log(decrypted);
+      console.log(message.type);
+
+      setMessagePayload(decrypted);
+      setMessageType(message.type);
     } catch (error) {
       console.error(error);
       setError('Something went wrong. The message could not be decrypted.');
@@ -48,14 +53,13 @@ const DisplayMessage: React.FC<{ id: string; password: string }> = ({
 
   return (
     <div>
-      {message ? (
+      {messageType && messagePayload ? (
         <div>
           <h2 className={styles.messageTitle}>Your message:</h2>
-          <p
+          <DisplayMessagePayload
             className={styles.message}
-            dangerouslySetInnerHTML={{
-              __html: nl2br(message ? message : 'loading..'),
-            }}
+            type={messageType}
+            payload={messagePayload}
           />
         </div>
       ) : error ? (

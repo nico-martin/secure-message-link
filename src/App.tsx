@@ -3,8 +3,8 @@ import React from 'react';
 import useHashPath from '@utils/useHashPath.ts';
 import styles from './App.module.css';
 import cn from '@utils/classnames.ts';
-import DisplayMessage from '@app/DisplayMessage.tsx';
-import CreateMessage from '@app/CreateMessage.tsx';
+import DisplayMessage from '@app/display/DisplayMessage.tsx';
+import CreateMessage from '@app/create/CreateMessage.tsx';
 import Header from '@app/Header.tsx';
 import Footer from '@app/Footer.tsx';
 

@@ -6,3 +6,5 @@ export { IconName } from './SVG/icons.ts';
 export { default as Loader } from './Loader/Loader.tsx';
 export { MessageType } from './Misc/Message.tsx';
 export { default as Message } from './Misc/Message.tsx';
+export { default as Copy } from './Misc/Copy.tsx';
+export { default as Dropzone } from './Misc/Dropzone.tsx';

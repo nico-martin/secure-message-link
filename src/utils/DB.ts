@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { PayloadType } from '@app/types.ts';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON as string;
@@ -10,13 +11,15 @@ interface Message {
   iv: string;
   salt: string;
   expires: string;
+  type: string;
 }
 
 export const createMessage = async (
   ciphertext: string,
   iv: string,
   salt: string,
-  expires: string
+  expires: string,
+  type: PayloadType
 ): Promise<string | null> => {
   try {
     const { data, error } = await supabase.rpc('insert_message', {
@@ -24,6 +27,7 @@ export const createMessage = async (
       iv,
       salt,
       expires,
+      type: type.toString(),
     });
 
     if (error) {

@@ -1,5 +1,6 @@
 /* This file was generated automatically with the ./generate.js script */
 
+import account from './icons/account.svg?react';
 import alertOutline from './icons/alert-outline.svg?react';
 import arrowLeft from './icons/arrow-left.svg?react';
 import arrowRight from './icons/arrow-right.svg?react';
@@ -11,8 +12,11 @@ import creation from './icons/creation.svg?react';
 import downloadOutline from './icons/download-outline.svg?react';
 import download from './icons/download.svg?react';
 import eraserVariant from './icons/eraser-variant.svg?react';
+import fileUploadOutline from './icons/file-upload-outline.svg?react';
+import formTextboxPassword from './icons/form-textbox-password.svg?react';
 import formatFont from './icons/formatFont.svg?react';
 import forum from './icons/forum.svg?react';
+import imageOutline from './icons/image-outline.svg?react';
 import informationOutline from './icons/information-outline.svg?react';
 import install from './icons/install.svg?react';
 import key from './icons/key.svg?react';
@@ -27,6 +31,7 @@ import play from './icons/play.svg?react';
 import save from './icons/save.svg?react';
 import settings from './icons/settings.svg?react';
 import stop from './icons/stop.svg?react';
+import textBoxOutline from './icons/text-box-outline.svg?react';
 import translate from './icons/translate.svg?react';
 import vacuum from './icons/vacuum.svg?react';
 import viewHtml from './icons/view-html.svg?react';
@@ -34,6 +39,7 @@ import viewMd from './icons/view-md.svg?react';
 import viewSplit from './icons/view-split.svg?react';
 
 export enum IconName {
+  ACCOUNT = 'account',
   ALERT_OUTLINE = 'alert-outline',
   ARROW_LEFT = 'arrow-left',
   ARROW_RIGHT = 'arrow-right',
@@ -45,8 +51,11 @@ export enum IconName {
   DOWNLOAD_OUTLINE = 'download-outline',
   DOWNLOAD = 'download',
   ERASER_VARIANT = 'eraser-variant',
+  FILE_UPLOAD_OUTLINE = 'file-upload-outline',
+  FORM_TEXTBOX_PASSWORD = 'form-textbox-password',
   FORMATFONT = 'formatFont',
   FORUM = 'forum',
+  IMAGE_OUTLINE = 'image-outline',
   INFORMATION_OUTLINE = 'information-outline',
   INSTALL = 'install',
   KEY = 'key',
@@ -61,6 +70,7 @@ export enum IconName {
   SAVE = 'save',
   SETTINGS = 'settings',
   STOP = 'stop',
+  TEXT_BOX_OUTLINE = 'text-box-outline',
   TRANSLATE = 'translate',
   VACUUM = 'vacuum',
   VIEW_HTML = 'view-html',
@@ -69,6 +79,7 @@ export enum IconName {
 }
 
 const icons: Record<string, any> = {
+  'account': account,
   'alert-outline': alertOutline,
   'arrow-left': arrowLeft,
   'arrow-right': arrowRight,
@@ -80,8 +91,11 @@ const icons: Record<string, any> = {
   'download-outline': downloadOutline,
   'download': download,
   'eraser-variant': eraserVariant,
+  'file-upload-outline': fileUploadOutline,
+  'form-textbox-password': formTextboxPassword,
   'formatFont': formatFont,
   'forum': forum,
+  'image-outline': imageOutline,
   'information-outline': informationOutline,
   'install': install,
   'key': key,
@@ -96,6 +110,7 @@ const icons: Record<string, any> = {
   'save': save,
   'settings': settings,
   'stop': stop,
+  'text-box-outline': textBoxOutline,
   'translate': translate,
   'vacuum': vacuum,
   'view-html': viewHtml,

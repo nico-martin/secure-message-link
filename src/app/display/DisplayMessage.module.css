@@ -2,13 +2,6 @@
 }
 
 .message {
-  background-color: var(--c-bkg);
-  border: 1px solid var(--c-border);
-  width: 100%;
-  border-radius: var(--border-radius);
-  height: 12em;
-  padding: 1em;
-  color: var(--c-p);
   margin-top: var(--spacing-small);
 }
 

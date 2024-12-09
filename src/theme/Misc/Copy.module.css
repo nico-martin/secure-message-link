@@ -1,0 +1,24 @@
+.button {
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+
+  svg {
+    position: relative;
+    z-index: 10;
+  }
+
+  &.copied {
+    color: var(--c-feedback-success);
+    pointer-events: none;
+
+    svg {
+      scale: 1.2;
+    }
+  }
+
+  svg,
+  figure {
+    display: block;
+  }
+}

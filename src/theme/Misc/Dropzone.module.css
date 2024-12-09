@@ -1,0 +1,66 @@
+.root {
+  width: 100%;
+}
+
+.zone {
+  padding: 3em;
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+  border: 1px dashed var(--c-border);
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5em;
+
+  p {
+    text-align: center;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--c-feedback);
+    transition: 200ms ease-in-out opacity;
+    opacity: 0;
+  }
+
+  &.dragging {
+    border-color: var(--c-feedback);
+
+    .icon {
+      color: var(--c-feedback);
+    }
+
+    .meta {
+      opacity: 0;
+    }
+
+    &:before {
+      opacity: 0.1;
+    }
+  }
+}
+
+.icon {
+  font-size: 3em;
+}
+
+.input {
+  pointer-events: none;
+  opacity: 0;
+  position: absolute;
+}
+
+.meta {
+  font-size: 0.8em;
+  opacity: 0.6;
+  margin-top: 1.5em;
+}
+
+.error {
+  margin-top: 1em;
+}

@@ -25,7 +25,7 @@ const DisplayFile: React.FC<{ text: string; className?: string }> = ({
   return (
     <div className={cn(className, styles.root)}>
       <div className={styles.file}>
-        <p>{title}</p>
+        <p className={styles.title}>{title}</p>
         <Copy file={{ content: file, mimeType }} className={styles.copy} />
         <a className={styles.download} download={title} href={file}>
           <Icon icon={IconName.DOWNLOAD} />

@@ -9,7 +9,7 @@ const CreateMessageForm: React.FC<{
   className?: string;
   onSubmit: (payload: Payload) => Promise<void>;
 }> = ({ className = '', onSubmit }) => {
-  const [type, setType] = React.useState<PayloadType>(PayloadType.IMAGE);
+  const [type, setType] = React.useState<PayloadType>(PayloadType.TEXT);
   const [error, setError] = React.useState<string>('');
   const [loading, setLoading] = React.useState<boolean>(false);
   const [file, setFile] = React.useState<File>(null);
@@ -36,6 +36,7 @@ const CreateMessageForm: React.FC<{
         try {
           if (type === PayloadType.IMAGE) {
             if (!file) {
+              setLoading(false);
               return;
             }
             const { fileContent, mimeType, title } = await readFile(file);
@@ -51,6 +52,7 @@ const CreateMessageForm: React.FC<{
               'input[name=password]'
             ).value;
             if (!username || !password) {
+              setLoading(false);
               return;
             }
             await onSubmit({ type, content: { username, password } });
@@ -60,6 +62,7 @@ const CreateMessageForm: React.FC<{
             );
             const text = textarea.value;
             if (!text) {
+              setLoading(false);
               return;
             }
             await onSubmit({ type, content: { text } });

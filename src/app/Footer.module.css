@@ -9,6 +9,7 @@
   p {
     font-size: var(--fs-xsmall);
     color: var(--c-p-light);
+    text-align: center;
 
     a {
       color: var(--c-grad);

@@ -12,6 +12,8 @@ import creation from './icons/creation.svg?react';
 import downloadOutline from './icons/download-outline.svg?react';
 import download from './icons/download.svg?react';
 import eraserVariant from './icons/eraser-variant.svg?react';
+import eyeOffOutline from './icons/eye-off-outline.svg?react';
+import eyeOutline from './icons/eye-outline.svg?react';
 import fileUploadOutline from './icons/file-upload-outline.svg?react';
 import formTextboxPassword from './icons/form-textbox-password.svg?react';
 import formatFont from './icons/formatFont.svg?react';
@@ -30,6 +32,7 @@ import pen from './icons/pen.svg?react';
 import play from './icons/play.svg?react';
 import save from './icons/save.svg?react';
 import settings from './icons/settings.svg?react';
+import shareVariant from './icons/share-variant.svg?react';
 import stop from './icons/stop.svg?react';
 import textBoxOutline from './icons/text-box-outline.svg?react';
 import translate from './icons/translate.svg?react';
@@ -51,6 +54,8 @@ export enum IconName {
   DOWNLOAD_OUTLINE = 'download-outline',
   DOWNLOAD = 'download',
   ERASER_VARIANT = 'eraser-variant',
+  EYE_OFF_OUTLINE = 'eye-off-outline',
+  EYE_OUTLINE = 'eye-outline',
   FILE_UPLOAD_OUTLINE = 'file-upload-outline',
   FORM_TEXTBOX_PASSWORD = 'form-textbox-password',
   FORMATFONT = 'formatFont',
@@ -69,6 +74,7 @@ export enum IconName {
   PLAY = 'play',
   SAVE = 'save',
   SETTINGS = 'settings',
+  SHARE_VARIANT = 'share-variant',
   STOP = 'stop',
   TEXT_BOX_OUTLINE = 'text-box-outline',
   TRANSLATE = 'translate',
@@ -91,6 +97,8 @@ const icons: Record<string, any> = {
   'download-outline': downloadOutline,
   'download': download,
   'eraser-variant': eraserVariant,
+  'eye-off-outline': eyeOffOutline,
+  'eye-outline': eyeOutline,
   'file-upload-outline': fileUploadOutline,
   'form-textbox-password': formTextboxPassword,
   'formatFont': formatFont,
@@ -109,6 +117,7 @@ const icons: Record<string, any> = {
   'play': play,
   'save': save,
   'settings': settings,
+  'share-variant': shareVariant,
   'stop': stop,
   'text-box-outline': textBoxOutline,
   'translate': translate,

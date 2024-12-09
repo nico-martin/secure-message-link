@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './Link.module.css';
 import cn from '@utils/classnames.ts';
-import { Icon, IconName } from '@theme';
+import { Button, IconName } from '@theme';
+
 const Link: React.FC<{ className?: string; link: string }> = ({
   className = '',
   link,
@@ -14,6 +15,13 @@ const Link: React.FC<{ className?: string; link: string }> = ({
     window.setTimeout(() => setCopied(false), 1000);
   };
 
+  const doShare = () => {
+    navigator.share({
+      title: 'Secure Message',
+      url: link,
+    });
+  };
+
   return (
     <div className={cn(styles.root, className)}>
       <p>
@@ -21,16 +29,20 @@ const Link: React.FC<{ className?: string; link: string }> = ({
       </p>
       <div className={styles.linkWrapper}>
         <code className={styles.link}>{link}</code>
-        <button
-          className={cn(styles.copy, { [styles.copied]: copied })}
+      </div>
+      <div className={styles.buttonContainer}>
+        <Button
+          size="small"
           onClick={doCopy}
+          icon={copied ? IconName.CHECK : IconName.CONTENT_COPY}
         >
-          {copied ? (
-            <Icon icon={IconName.CHECK} />
-          ) : (
-            <Icon icon={IconName.CONTENT_COPY} />
-          )}
-        </button>
+          copy
+        </Button>
+        {Boolean(navigator.share) && (
+          <Button size="small" onClick={doShare} icon={IconName.SHARE_VARIANT}>
+            share
+          </Button>
+        )}
       </div>
     </div>
   );
